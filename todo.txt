@@ -1,0 +1,23 @@
+Thoughts on CLI options:
+  - load config directly from file
+  - (default) load config using eslint itself from a target file location
+  - output straight json
+  - output a compatibility score
+  - output textual diff
+
+getLiteralConfig:
+  support all file types: js, yaml, json, key in package.json
+    http://eslint.org/docs/user-guide/configuring
+  attempt to load extended configurations? would have to replicate eslint path lookups, merging...
+
+getDifferences:
+  - include shared rule list
+  - include shared plugin list
+
+For textual diff:
+  - include colors?
+  - what id we didn't just do a console.log? What would be a better format?
+  - include counts for rules and plugins: missing on left, shared, missing on right
+  - A better way to display the general config diffs?
+
+Add tests!

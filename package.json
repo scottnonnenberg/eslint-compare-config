@@ -1,0 +1,24 @@
+{
+  "name": "eslint-compare-config",
+  "version": "0.1.0",
+  "description": "A tool to compare two eslint configurations.",
+  "main": "index.js",
+
+  "dependencies": {
+    "deep-equal": "1.0.1",
+    "deep-diff": "0.3.4",
+    "eslint": "2.9.0",
+    "lodash": "4.x"
+  },
+  "devDependencies": {
+    "eslint-config-thehelp": "0.2.0"
+  },
+
+  "scripts": {
+    "test": "npm run lint",
+
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC"
+}
