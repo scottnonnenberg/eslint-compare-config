@@ -4,7 +4,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var _ = require('lodash');
 
-var getDifferences = require('src/getDifferences');
+var getDifferences = require('src/get_differences');
 
 
 describe('unit/getDifferences', function() {

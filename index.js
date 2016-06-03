@@ -3,6 +3,6 @@
 /* eslint-disable global-require */
 
 module.exports = { // eslint-disable-line
-  getDifferences: require('./src/getDifferences'),
-  printDifferences: require('./src/printDifferences'),
+  getDifferences: require('./src/get_differences'),
+  printDifferences: require('./src/print_differences'),
 };

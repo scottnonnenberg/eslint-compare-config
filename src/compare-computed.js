@@ -4,9 +4,9 @@
 
 var path = require('path');
 
-var getDifferences = require('./getDifferences');
-var printDifferences = require('./printDifferences');
-var getConfig = require('./getConfig');
+var getDifferences = require('./get_differences');
+var printDifferences = require('./print_differences');
+var getConfig = require('./get_config');
 
 
 var leftPath = path.resolve(process.argv[2]);
