@@ -40,4 +40,4 @@ function compareRules(leftConfig, rightConfig) {
   };
 }
 
-module.exports = compareRules; // eslint-disable-line
+module.exports = compareRules;

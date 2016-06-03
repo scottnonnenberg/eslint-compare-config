@@ -18,7 +18,7 @@ function printDifferences(result) {
   printOtherDifferences(result);
 }
 
-module.exports = printDifferences; // eslint-disable-line
+module.exports = printDifferences;
 
 function printPluginDifferences(result) {
   console.log('Plugins missing from right:', result.pluginsMissingFromRight);
