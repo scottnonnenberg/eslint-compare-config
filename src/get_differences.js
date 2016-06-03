@@ -21,10 +21,10 @@ function compareRules(leftConfig, rightConfig) {
 
   return {
     differences: deepDiff(leftClean, rightClean) || [],
-    pluginsMissingFromRight: _.difference(leftPlugins, rightPlugins),
     pluginsMissingFromLeft: _.difference(rightPlugins, leftPlugins),
-    rulesMissingFromRight: _.difference(leftRules, rightRules),
+    pluginsMissingFromRight: _.difference(leftPlugins, rightPlugins),
     rulesMissingFromLeft: _.difference(rightRules, leftRules),
+    rulesMissingFromRight: _.difference(leftRules, rightRules),
     ruleDifferences: _.chain(sharedRules)
       .map(function(rule) {
         return {
