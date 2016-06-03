@@ -12,6 +12,8 @@ describe('unit/renderDifferences', function() {
     var differences = {
       pluginsMissingFromLeft: [],
       pluginsMissingFromRight: [],
+      extendsMissingFromLeft: [],
+      extendsMissingFromRight: [],
       rulesMissingFromLeft: [],
       rulesMissingFromRight: [],
       ruleDifferences: [],
@@ -27,8 +29,10 @@ describe('unit/renderDifferences', function() {
     var differences = {
       pluginsMissingFromLeft: ['one', 'two'],
       pluginsMissingFromRight: ['three', 'four'],
-      rulesMissingFromLeft: ['one', 'two'],
-      rulesMissingFromRight: ['three', 'four'],
+      extendsMissingFromLeft: ['_one', '_two'],
+      extendsMissingFromRight: ['_three', '_four'],
+      rulesMissingFromLeft: ['+one', '+two'],
+      rulesMissingFromRight: ['+three', '+four'],
       ruleDifferences: [{
         rule: 'five',
         left: ['error', {
@@ -62,13 +66,21 @@ describe('unit/renderDifferences', function() {
       + '  three\n'
       + '  four\n'
       + '\n'
+      + 'Extends missing from left:\n'
+      + '  _one\n'
+      + '  _two\n'
+      + '\n'
+      + 'Extends missing from right:\n'
+      + '  _three\n'
+      + '  _four\n'
+      + '\n'
       + 'Rules missing from left:\n'
-      + '  one\n'
-      + '  two\n'
+      + '  +one\n'
+      + '  +two\n'
       + '\n'
       + 'Rules missing from right:\n'
-      + '  three\n'
-      + '  four\n'
+      + '  +three\n'
+      + '  +four\n'
       + '\n'
       + 'Rule configuration differences:\n'
       + '  five:\n'
@@ -103,6 +115,10 @@ describe('unit/renderDifferences', function() {
       + '  one\n'
       + '\n'
       + 'Plugins missing from right: None\n'
+      + '\n'
+      + 'Extends missing from left: None\n'
+      + '\n'
+      + 'Extends missing from right: None\n'
       + '\n'
       + 'Rules missing from left: None\n'
       + '\n'

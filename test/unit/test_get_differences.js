@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+
 'use strict';
 
 var chai = require('chai');
@@ -18,6 +20,10 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('sharedPlugins').that.deep.equal([]);
     expect(actual).to.have.property('pluginsMissingFromRight').that.deep.equal([]);
 
+    expect(actual).to.have.property('extendsMissingFromLeft').that.deep.equal([]);
+    expect(actual).to.have.property('sharedExtends').that.deep.equal([]);
+    expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
+
     expect(actual).to.have.property('rulesMissingFromLeft').that.deep.equal([]);
     expect(actual).to.have.property('sharedRules').that.deep.equal([]);
     expect(actual).to.have.property('rulesMissingFromRight').that.deep.equal([]);
@@ -25,7 +31,7 @@ describe('unit/getDifferences', function() {
 
     expect(actual).to.have.property('differences').that.deep.equal([]);
 
-    expect(_.keys(actual)).to.have.length(8);
+    expect(_.keys(actual)).to.have.length(11);
   });
 
   it('property computes rule diffs', function() {
@@ -53,6 +59,10 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('pluginsMissingFromLeft').that.deep.equal([]);
     expect(actual).to.have.property('sharedPlugins').that.deep.equal([]);
     expect(actual).to.have.property('pluginsMissingFromRight').that.deep.equal([]);
+
+    expect(actual).to.have.property('extendsMissingFromLeft').that.deep.equal([]);
+    expect(actual).to.have.property('sharedExtends').that.deep.equal([]);
+    expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
 
     expect(actual).to.have.property('rulesMissingFromLeft')
       .that.deep.equal(['four']);
@@ -92,6 +102,10 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('pluginsMissingFromRight')
       .that.deep.equal(['one']);
 
+    expect(actual).to.have.property('extendsMissingFromLeft').that.deep.equal([]);
+    expect(actual).to.have.property('sharedExtends').that.deep.equal([]);
+    expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
+
     expect(actual).to.have.property('rulesMissingFromLeft').that.deep.equal([]);
     expect(actual).to.have.property('sharedRules').that.deep.equal([]);
     expect(actual).to.have.property('rulesMissingFromRight').that.deep.equal([]);
@@ -120,9 +134,15 @@ describe('unit/getDifferences', function() {
     var actual = getDifferences(left, right);
 
     expect(actual).to.have.property('pluginsMissingFromLeft').that.deep.equal([]);
+    expect(actual).to.have.property('sharedPlugins').that.deep.equal([]);
     expect(actual).to.have.property('pluginsMissingFromRight').that.deep.equal([]);
 
+    expect(actual).to.have.property('extendsMissingFromLeft').that.deep.equal([]);
+    expect(actual).to.have.property('sharedExtends').that.deep.equal([]);
+    expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
+
     expect(actual).to.have.property('rulesMissingFromLeft').that.deep.equal([]);
+    expect(actual).to.have.property('sharedRules').that.deep.equal([]);
     expect(actual).to.have.property('rulesMissingFromRight').that.deep.equal([]);
     expect(actual).to.have.property('ruleDifferences').that.deep.equal([]);
 

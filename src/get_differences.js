@@ -14,8 +14,11 @@ function compareRules(leftConfig, rightConfig) {
   var leftPlugins = leftConfig.plugins;
   var rightPlugins = rightConfig.plugins;
 
-  var leftClean = _.omit(leftConfig, ['rules', 'plugins']);
-  var rightClean = _.omit(rightConfig, ['rules', 'plugins']);
+  var leftExtends = leftConfig.extends;
+  var rightExtends = rightConfig.extends;
+
+  var leftClean = _.omit(leftConfig, ['rules', 'plugins', 'extends']);
+  var rightClean = _.omit(rightConfig, ['rules', 'plugins', 'extends']);
 
   var sharedRules = _.intersection(leftRules, rightRules);
 
@@ -24,8 +27,12 @@ function compareRules(leftConfig, rightConfig) {
     sharedPlugins: _.intersection(leftPlugins, rightPlugins),
     pluginsMissingFromRight: _.difference(leftPlugins, rightPlugins),
 
+    extendsMissingFromLeft: _.difference(rightExtends, leftExtends),
+    sharedExtends: _.intersection(leftExtends, rightExtends),
+    extendsMissingFromRight: _.difference(leftExtends, rightExtends),
+
     rulesMissingFromLeft: _.difference(rightRules, leftRules),
-    sharedRules: _.intersection(leftRules, rightRules),
+    sharedRules: sharedRules,
     rulesMissingFromRight: _.difference(leftRules, rightRules),
     ruleDifferences: _.chain(sharedRules)
       .map(function(rule) {

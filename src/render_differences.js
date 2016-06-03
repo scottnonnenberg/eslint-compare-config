@@ -2,6 +2,7 @@
 
 var util = require('util');
 var chalk = require('chalk');
+var _ = require('lodash');
 
 
 var INDENT = '  ';
@@ -9,13 +10,24 @@ var JOIN = '\n' + INDENT;
 var SEPARATOR = '\n\n';
 
 function renderDifferences(result) {
-  if (!result.rulesMissingFromRight.length && !result.rulesMissingFromLeft.length
-    && !result.pluginsMissingFromRight.length && !result.pluginsMissingFromLeft.length
-    && !result.ruleDifferences.length && !result.differences.length) {
+  if (!result) {
+    throw new Error('need to provide the differnces!');
+  }
+
+  if (noLength(result.rulesMissingFromLeft)
+    && noLength(result.rulesMissingFromRight)
+    && noLength(result.extendsMissingFromLeft)
+    && noLength(result.extendsMissingFromRight)
+    && noLength(result.pluginsMissingFromLeft)
+    && noLength(result.pluginsMissingFromRight)
+    && noLength(result.ruleDifferences)
+    && noLength(result.differences)) {
     return 'No differences.';
   }
 
   return printPluginDifferences(result)
+    + SEPARATOR
+    + printExtendsDifferences(result)
     + SEPARATOR
     + printRuleDifferences(result)
     + SEPARATOR
@@ -23,6 +35,10 @@ function renderDifferences(result) {
 }
 
 module.exports = renderDifferences;
+
+function noLength(array) {
+  return !array || !array.length;
+}
 
 function bold(item) {
   return chalk.bold(item);
@@ -38,21 +54,30 @@ function joinOrNone(array) {
 
 function printPluginDifferences(result) {
   return 'Plugins missing from left:'
-    + joinOrNone(result.pluginsMissingFromLeft.map(bold))
+    + joinOrNone(_.map(result.pluginsMissingFromLeft, bold))
     + SEPARATOR
     + 'Plugins missing from right:'
-    + joinOrNone(result.pluginsMissingFromRight.map(bold));
+    + joinOrNone(_.map(result.pluginsMissingFromRight, bold));
 }
+
+function printExtendsDifferences(result) {
+  return 'Extends missing from left:'
+    + joinOrNone(_.map(result.extendsMissingFromLeft, bold))
+    + SEPARATOR
+    + 'Extends missing from right:'
+    + joinOrNone(_.map(result.extendsMissingFromRight, bold));
+}
+
 
 function printRuleDifferences(result) {
   return 'Rules missing from left:'
-    + joinOrNone(result.rulesMissingFromLeft.map(bold))
+    + joinOrNone(_.map(result.rulesMissingFromLeft, bold))
     + SEPARATOR
     + 'Rules missing from right:'
-    + joinOrNone(result.rulesMissingFromRight.map(bold))
+    + joinOrNone(_.map(result.rulesMissingFromRight, bold))
     + SEPARATOR
     + 'Rule configuration differences:'
-    + joinOrNone(result.ruleDifferences.map(printRuleDifference));
+    + joinOrNone(_.map(result.ruleDifferences, printRuleDifference));
 }
 
 function printRuleDifference(rule) {
@@ -69,7 +94,7 @@ function printRuleDifference(rule) {
 
 function printOtherDifferences(result) {
   return 'Differences in other configuration:'
-    + joinOrNone(result.differences.map(renderDiff));
+    + joinOrNone(_.map(result.differences, renderDiff));
 }
 
 function renderDiff(diff) {
