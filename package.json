@@ -11,14 +11,29 @@
     "lodash": "4.x"
   },
   "devDependencies": {
+    "app-module-path": "1.1.0",
+    "chai": "3.5.0",
     "eslint-config-thehelp": "0.4.0",
+    "istanbul": "0.4.3",
+    "mocha": "2.5.3"
   },
 
   "scripts": {
-    "test": "npm run lint",
+    "lint": "eslint .",
 
-    "lint": "eslint ."
+    "test": "npm run unit && npm run lint",
+
+    "mocha": "NODE_ENV=test time mocha --recursive --require test/setup.js",
+    "mocha-watch": "npm run mocha -- --watch",
+    "mocha-coverage": "NODE_ENV=test time istanbul cover _mocha -- --recursive --require test/setup.js",
+
+    "unit": "npm run mocha -- -s 15 test/unit",
+    "unit-watch": "npm run mocha-watch -- -s 15 test/unit",
+    "unit-coverage": "npm run mocha-coverage -- test/unit",
+
+    "open-coverage": "open coverage/lcov-report/index.html"
   },
-  "author": "",
-  "license": "ISC"
+
+  "author": "Scott Nonnenberg",
+  "license": "All rights reserved"
 }
