@@ -31,6 +31,14 @@
     "unit-watch": "npm run mocha-watch -- -s 15 test/unit",
     "unit-coverage": "npm run mocha-coverage -- test/unit",
 
+    "integration": "npm run mocha -- -s 15 test/integration",
+    "integration-watch": "npm run mocha-watch -- -s 15 test/integration",
+    "integration-coverage": "npm run mocha-coverage -- test/integration",
+
+    "all": "npm run mocha -- -s 15 test/unit test/integration",
+    "all-watch": "npm run mocha-watch -- -s 15 test/unit test/integration",
+    "all-coverage": "npm run mocha-coverage -- test/unit test/integration",
+
     "open-coverage": "open coverage/lcov-report/index.html"
   },
 
