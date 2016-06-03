@@ -8,7 +8,7 @@ var right = {
   plugins: [
     'thehelp',
     'immutable',
-    'nonexistent',
+    'react',
   ],
 
   rules: {

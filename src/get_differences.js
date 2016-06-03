@@ -21,8 +21,11 @@ function compareRules(leftConfig, rightConfig) {
 
   return {
     pluginsMissingFromLeft: _.difference(rightPlugins, leftPlugins),
+    sharedPlugins: _.intersection(leftPlugins, rightPlugins),
     pluginsMissingFromRight: _.difference(leftPlugins, rightPlugins),
+
     rulesMissingFromLeft: _.difference(rightRules, leftRules),
+    sharedRules: _.intersection(leftRules, rightRules),
     rulesMissingFromRight: _.difference(leftRules, rightRules),
     ruleDifferences: _.chain(sharedRules)
       .map(function(rule) {
@@ -36,6 +39,7 @@ function compareRules(leftConfig, rightConfig) {
         return equal(item.left, item.right);
       })
       .value(),
+
     differences: deepDiff(leftClean, rightClean) || [],
   };
 }

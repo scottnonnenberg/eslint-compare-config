@@ -13,6 +13,7 @@ getLiteralConfig:
 getDifferences:
   - include shared rule list
   - include shared plugin list
+  - treat 'extends' just like plugins/rules?
 
 For textual diff:
   - include counts for rules and plugins: missing on left, shared, missing on right
