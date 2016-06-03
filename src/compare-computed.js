@@ -5,7 +5,7 @@
 var path = require('path');
 
 var getDifferences = require('./get_differences');
-var printDifferences = require('./print_differences');
+var renderDifferences = require('./render_differences');
 var getConfig = require('./get_config');
 
 
@@ -19,5 +19,6 @@ console.log();
 var config = getConfig(leftPath, rightPath);
 var result = getDifferences(config.left, config.right);
 
-printDifferences(result);
+var text = renderDifferences(result);
 
+console.log(text);
