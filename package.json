@@ -7,11 +7,11 @@
   "dependencies": {
     "deep-equal": "1.0.1",
     "deep-diff": "0.3.4",
-    "eslint": "2.9.0",
+    "eslint": "2.11.1",
     "lodash": "4.x"
   },
   "devDependencies": {
-    "eslint-config-thehelp": "0.2.0"
+    "eslint-config-thehelp": "0.4.0",
   },
 
   "scripts": {
