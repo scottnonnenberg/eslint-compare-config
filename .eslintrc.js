@@ -12,8 +12,4 @@ module.exports = {
   extends: [
     'thehelp/core',
   ],
-
-  rules: {
-    'no-magic-numbers': 'off', // requires const!
-  },
 };
