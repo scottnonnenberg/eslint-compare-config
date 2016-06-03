@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-sync */
+/* eslint-disable no-sync, security/detect-child-process, security/detect-non-literal-fs-filename */
 
 var path = require('path');
 var fs = require('fs');

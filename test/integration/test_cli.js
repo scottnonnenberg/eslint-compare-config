@@ -1,17 +1,29 @@
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
-var _ = require('lodash');
-
 var cli = require('src/cli');
 
 
 describe('integration/cli', function() {
-  it('loads two files', function() {
-    var left = 'test/integration/left/index.js';
-    var right = 'test/integration/right/index.js';
+  var left = 'test/integration/left/.eslintrc.js';
+  var right = 'test/integration/right/.eslintrc.js';
 
+  it('shows help', function() {
+    cli(['node', 'file.js', left, right, '--help']);
+  });
+
+  it('shows differences between two files', function() {
     cli(['node', 'file.js', left, right]);
+  });
+
+  it('shows literal differences between two files', function() {
+    cli(['node', 'file.js', left, right, '--literal']);
+  });
+
+  it('shows json differences', function() {
+    cli(['node', 'file.js', left, right, '--json']);
+  });
+
+  it('shows score', function() {
+    cli(['node', 'file.js', left, right, '--score']);
   });
 });
