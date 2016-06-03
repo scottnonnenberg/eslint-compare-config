@@ -5,6 +5,6 @@
 var eslint = require('eslint');
 var CLIEngine = eslint.CLIEngine;
 var engine = new CLIEngine();
-var config = engine.getConfigForFile('index.js');
+var config = engine.getConfigForFile('__random.js');
 
 console.log(JSON.stringify(config, null, '  '));
