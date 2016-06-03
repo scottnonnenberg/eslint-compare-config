@@ -7,6 +7,12 @@ var getScore = require('src/get_score');
 
 
 describe('unit/getScore', function() {
+  it('returns 100 for empty object', function() {
+    var differences = {};
+    var actual = getScore(differences);
+    expect(actual).to.equal(100);
+  });
+
   it('returns 100 for no differences', function() {
     var differences = {
       rulesMissingFromLeft: [],

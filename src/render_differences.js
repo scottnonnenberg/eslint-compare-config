@@ -11,7 +11,7 @@ var SEPARATOR = '\n\n';
 
 function renderDifferences(result) {
   if (!result) {
-    throw new Error('need to provide the differnces!');
+    throw new Error('need to provide the differences!');
   }
 
   if (noLength(result.rulesMissingFromLeft)

@@ -8,6 +8,20 @@ var renderDifferences = require('src/render_differences');
 
 
 describe('unit/renderDifferences', function() {
+  it('throws if provided null object', function() {
+    var differences = null;
+    expect(function() {
+      renderDifferences(differences);
+    }).to.throw(Error)
+      .that.match(/need to provide/);
+  });
+
+  it('handles empty object', function() {
+    var differences = {};
+    var actual = renderDifferences(differences);
+    expect(actual).to.equal('No differences.');
+  });
+
   it('returns "No differences" for empty object', function() {
     var differences = {
       pluginsMissingFromLeft: [],
