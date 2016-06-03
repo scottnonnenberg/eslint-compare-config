@@ -15,9 +15,6 @@ function getConfig(leftPath, rightPath) {
   var leftDir = path.dirname(path.resolve(leftPath));
   var rightDir = path.dirname(path.resolve(rightPath));
 
-  // what I actually need to do here is put a s file on disk in the target directory and
-  // run it, so it has the right require bindings. ugh. I guess I should consider it fun. :0)
-
   var left = getConfigForDir(leftDir);
   var right = getConfigForDir(rightDir);
 
@@ -32,9 +29,10 @@ function getConfigForDir(dir) {
   var target = path.join(dir, filename);
 
   fs.writeFileSync(target, script);
+  var components = path.parse(dir);
 
   var options = {
-    cwd: dir,
+    cwd: components.root, // enables proper eslint searches for parent configs
   };
   var result = childProcess.execFileSync('node', [target], options).toString();
 

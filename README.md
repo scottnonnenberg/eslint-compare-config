@@ -33,6 +33,5 @@ If installed as a dependency, you can `require('eslint-compare-config')` and get
 
 ## TODO
 
-- When testing nested config files (like `project/tests/.eslintrc.js`), we set the current working dir to the target directory, which may cause `eslint` not to search up the tree for parent config files. Needs more research.
 - Support eslint config in YAML and `package.json` files
 - In default output, include overall counts: total, shared, missing left, missing right
