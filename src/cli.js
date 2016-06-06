@@ -39,7 +39,7 @@ function showDifferences(parsed, differences) {
     console.log(JSON.stringify(differences, null, '  '));
   }
   else if (parsed.score) {
-    console.log('Score: ' + getScore(differences) + '%');
+    console.log('Score: ' + getScore(differences) + '% similarity');
   }
   else {
     console.log(renderDifferences(differences));
