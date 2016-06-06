@@ -43,4 +43,8 @@ describe('integration/cli', function() {
   it('shows score', function() {
     cli(['node', 'boot.js', left, right, '--score']);
   });
+
+  it('shows literal score', function() {
+    cli(['node', 'boot.js', left, right, '--score', '--literal']);
+  });
 });
