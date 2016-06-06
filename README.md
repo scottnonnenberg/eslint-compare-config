@@ -25,13 +25,18 @@ First, you will always need to provide two paths to the tool. The first is the _
 
 If installed as a dependency, you can `require('eslint-compare-config')` and get access to a number of functions:
 
-- `getConfig(leftPath, rightPath)` - puts a file in each of the target directories and uses `eslint` APIs to load the configuration for a file in that directory
+- `getConfig(leftPath, rightPath)` - puts a file in each of the target directories whichs uses `eslint` APIs to load the configuration for a file in that directory, runs them, then deletes them.
 - `getDifferences(left, right)` - given two configs, produces an object describing all of their differences. The same thing you get when you use the `--json` option
 - `getLiteralConfig(leftPath, rightPath)` - loads the target files using `require()`, thus supporting only JavaScript and JSON file formats
-- `getScore(differences)` - given `getDifferences()` output, returns a score 1-100.
+- `getScore(differences)` - given `getDifferences()` output, returns a similarity score 1-100.
 - `renderDifferences(differences)` - given `getDifferences()` output, returns string with human-readable comparison (including ANSI color codes)
 
 ## TODO
 
-- Support eslint config in YAML and `package.json` files
+- Literal mode: support eslint config in YAML and `package.json` files
 - In default output, include overall counts: total, shared, missing left, missing right
+- Support extended equivalence:
+  * 0 === 'off', 1 === 'warning', 2 === 'error'
+  * just 'error' is the same as ['error', {something: true}] if that config is the same as the default. How to get the default?
+- Determinism: sort rules/plugins/extends by name, rules without / in them first
+- Test in a directory without ESLint installed - how do we propagate errors from file dropped on disk?
