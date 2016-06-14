@@ -9,8 +9,8 @@ var getConfig = require('src/get_config');
 
 describe('integration/getConfig', function() {
   it('loads two config files', function() {
-    var left = 'test/integration/left/index.js';
-    var right = 'test/integration/right/index.js';
+    var left = 'test/integration/left';
+    var right = 'test/integration/right';
 
     var actual = getConfig(left, right);
 

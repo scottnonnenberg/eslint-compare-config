@@ -12,8 +12,8 @@ var _ = require('lodash');
 var script = fs.readFileSync(path.join(__dirname, '_get_config.js')).toString();
 
 function getConfig(leftPath, rightPath) {
-  var leftDir = path.dirname(path.resolve(leftPath));
-  var rightDir = path.dirname(path.resolve(rightPath));
+  var leftDir = path.resolve(leftPath);
+  var rightDir = path.resolve(rightPath);
 
   var left = getConfigForDir(leftDir);
   var right = getConfigForDir(rightDir);
@@ -24,7 +24,9 @@ function getConfig(leftPath, rightPath) {
   };
 }
 
-function getConfigForDir(dir) {
+function getConfigForDir(startPath) {
+  var stat = fs.statSync(startPath);
+  var dir = stat.isDirectory() ? startPath : path.dirname(startPath);
   var filename = '__get_config.js';
   var target = path.join(dir, filename);
 
