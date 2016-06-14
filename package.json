@@ -3,35 +3,27 @@
   "version": "0.1.0",
   "description": "A tool to compare two eslint configurations.",
   "main": "index.js",
-
   "bin": {
     "eslint-compare-config": "bin/eslint-compare-config"
   },
-
   "scripts": {
+    "release": "standard-version",
     "lint": "eslint .",
-
     "test": "npm run all && npm run lint",
-
     "mocha": "NODE_ENV=test time mocha --recursive --require test/setup.js",
     "mocha-watch": "npm run mocha -- --watch",
     "mocha-coverage": "NODE_ENV=test time istanbul cover _mocha -- --recursive --require test/setup.js",
-
     "unit": "npm run mocha -- -s 15 test/unit",
     "unit-watch": "npm run mocha-watch -- -s 15 test/unit",
     "unit-coverage": "npm run mocha-coverage -- test/unit",
-
     "integration": "npm run mocha -- -s 15 test/integration",
     "integration-watch": "npm run mocha-watch -- -s 15 test/integration",
     "integration-coverage": "npm run mocha-coverage -- test/integration",
-
     "all": "npm run mocha -- -s 15 test/unit test/integration",
     "all-watch": "npm run mocha-watch -- -s 15 test/unit test/integration",
     "all-coverage": "npm run mocha-coverage -- test/unit test/integration",
-
     "open-coverage": "open coverage/lcov-report/index.html"
   },
-
   "dependencies": {
     "chalk": "1.1.3",
     "dashdash": "1.14.0",
@@ -44,11 +36,26 @@
     "@scottnonnenberg/eslint-config-thehelp": "0.6.1",
     "app-module-path": "1.1.0",
     "chai": "3.5.0",
+    "ghooks": "1.2.3",
     "istanbul": "0.4.3",
     "mocha": "2.5.3",
-    "strip-ansi": "3.0.1"
+    "standard-version": "2.3.0",
+    "strip-ansi": "3.0.1",
+    "validate-commit-msg": "2.6.1"
   },
-
-  "author": "Scott Nonnenberg",
-  "license": "MIT"
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "validate-commit-msg": {
+      "maxSubjectLength": 72
+    }
+  },
+  "author": "Scott Nonnenberg <scott@nonnenberg.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/scottnonnenberg/eslint-compare-config",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:scottnonnenberg/eslint-compare-config.git"
+  }
 }
