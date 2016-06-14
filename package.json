@@ -1,5 +1,5 @@
 {
-  "name": "eslint-compare-config",
+  "name": "@scottnonnenberg/eslint-compare-config",
   "version": "0.1.0",
   "description": "A tool to compare two eslint configurations.",
   "main": "index.js",
