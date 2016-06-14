@@ -36,11 +36,14 @@ function getConfigForDir(startPath) {
   var options = {
     cwd: components.root, // enables proper eslint searches for parent configs
   };
-  var result = childProcess.execFileSync('node', [target], options).toString();
 
-  fs.unlinkSync(target);
-
-  return JSON.parse(result);
+  try {
+    var result = childProcess.execFileSync('node', [target], options).toString();
+    return JSON.parse(result);
+  }
+  finally {
+    fs.unlinkSync(target);
+  }
 }
 
 module.exports = getConfig;
