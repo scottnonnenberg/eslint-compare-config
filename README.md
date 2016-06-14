@@ -1,24 +1,92 @@
-# eslint-compare-config
+# @scottnonnenberg/eslint-compare-config
 
-A little tool to help you compare your eslint configurations.
+A little tool to help you compare [ESLint](http://eslint.org/) configurations, the way ESLint sees them.
 
 ## Quickstart
 
 ```bash
-npm install eslint-compare-config -g
-eslint-compare-config projectOne/.eslintrc.js projectTwo/.eslintrc.js
+npm install @scottnonnenberg/eslint-compare-config -g
+eslint-compare-config projectDirOne/ projectDirTwo/
 ```
+
+Here's what you get if you compare [`@scottnonnenberg/thehelp`](https://github.com/scottnonnenberg/eslint-config-thehelp) config versus that config merged with [`@scottnonnenberg/thehelp/test`](https://github.com/scottnonnenberg/eslint-config-thehelp#configurations-in-this-project):
+
+```
+Plugins missing from left:
+  bdd
+  chai-expect
+
+Plugins missing from right: None
+
+Extends missing from left:
+  @scottnonnenberg/thehelp/test
+
+Extends missing from right:
+  @scottnonnenberg/thehelp
+
+Rules missing from left:
+  bdd/focus
+  bdd/exclude
+  chai-expect/missing-assertion
+  chai-expect/no-inner-compare
+  chai-expect/terminating-properties
+
+Rules missing from right: None
+
+Rule configuration differences:
+  max-nested-callbacks:
+    left: [ 'error', { max: 3 } ]
+    right: [ 'off', { max: 3 } ]
+  no-magic-numbers:
+    left: [ 'error',
+      { ignore: [ -2, -1, 0, 1, 2 ],
+        ignoreArrayIndexes: true,
+        enforceConst: true,
+        detectObjects: false } ]
+    right: [ 'off',
+      { ignore: [ -2, -1, 0, 1, 2 ],
+        ignoreArrayIndexes: true,
+        enforceConst: true,
+        detectObjects: false } ]
+  no-sync:
+    left: 'error'
+    right: 'off'
+  no-undefined:
+    left: 'error'
+    right: 'off'
+  no-unused-expressions:
+    left: 'error'
+    right: 'off'
+  import/no-extraneous-dependencies:
+    left: [ 'error', { devDependencies: false } ]
+    right: [ 'off', { devDependencies: false } ]
+  security/detect-non-literal-fs-filename:
+    left: 'error'
+    right: 'off'
+  immutable/no-let:
+    left: 'error'
+    right: 'off'
+
+Differences in other configuration:
+  env.mocha:
+    left: undefined
+    right: true
+```
+
+It make it very easy to see how ESLint merged the settings. In the right config, rules are off but they have the same base configuration as the left config.
 
 ## Permissions
 
-Note that, to get around `eslint` plugin/module-loading semantics this tool puts a file in the target directory and run it with Node.js. This means that you'll need write/delete permissions in the target directory. If you don't have that, your best bet is to go with 'literal mode.'
+Note that, to get around ESLint plugin/module-loading semantics this tool puts a file in each target directory and runs it with Node.js. This means that you'll need write/delete permissions in the target directory.
+
+If you don't have that permssion, your best bet is to go with _literal mode_.
 
 ## Options
 
 First, you will always need to provide two paths to the tool. The first is the _left_, and the second is the _right_. These terms will be used in the output.
 
-- `--literal` - by default, the tool uses full `eslint` semantics to load configuration. Providing this option changes to a direct load of the target file. Today only JavaScript and JSON files are supported.
-- `--json` - by default, the difference between the two configurations is displayed in human-readable format. If you'd like to use the data in another tool, this will print the raw JSON.stringified `differences` object to the console.
+- `--literal` - by default, the tool uses full ESlint semantics to load configuration. Providing this option changes to a direct load of the target file, so you can no longer provide directories as input. Right now only JavaScript and JSON files are supported.
+- `--json` - by default, the difference between the two configurations is displayed in human-readable format (see above). If you'd like to use the data in another tool, this will print the raw JSON.stringified `differences` object to the console.
 - `--score` - if you'd like to see the similarity of two configurations at a glance, use this option. 0% is completely different, 100% is exactly the same.
 
 ## API
@@ -39,7 +107,6 @@ If installed as a dependency, you can `require('eslint-compare-config')` and get
   * 0 === 'off', 1 === 'warning', 2 === 'error'
   * just 'error' is the same as ['error', {something: true}] if that config is the same as the default. How to get the default?
 - Determinism: sort rules/plugins/extends by name, rules without / in them first
-- Test in a directory without ESLint installed - how do we propagate errors from file dropped on disk?
 
 ## License
 
