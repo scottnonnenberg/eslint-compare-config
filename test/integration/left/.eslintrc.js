@@ -2,11 +2,7 @@
 
 var left = {
   extends: [
-    'thehelp/scripts',
-  ],
-
-  plugins: [
-    'thehelp',
+    '@scottnonnenberg/thehelp/scripts',
   ],
 
   rules: {

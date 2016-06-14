@@ -22,7 +22,7 @@ describe('integration/getLiteralConfig', function() {
     expect(actual).to.have.deep.property('left.extends').that.has.length(1);
     expect(actual).to.have.deep.property('right.extends').that.has.length(1);
 
-    expect(actual).to.have.deep.property('left.plugins').that.has.length(1);
-    expect(actual).to.have.deep.property('right.plugins').that.has.length(3);
+    expect(actual).not.to.have.deep.property('left.plugins');
+    expect(actual).to.have.deep.property('right.plugins').that.has.length(2);
   });
 });

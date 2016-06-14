@@ -10,6 +10,6 @@ module.exports = {
   },
 
   extends: [
-    'thehelp/core',
+    '@scottnonnenberg/thehelp/core',
   ],
 };

@@ -2,11 +2,10 @@
 
 var right = {
   extends: [
-    'thehelp/test',
+    '@scottnonnenberg/thehelp/test',
   ],
 
   plugins: [
-    'thehelp',
     'immutable',
     'react',
   ],
