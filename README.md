@@ -12,68 +12,44 @@ eslint-compare-config projectDirOne/ projectDirTwo/
 Here's what you get if you compare [`@scottnonnenberg/thehelp`](https://github.com/scottnonnenberg/eslint-config-thehelp) config versus that config merged with [`@scottnonnenberg/thehelp/test`](https://github.com/scottnonnenberg/eslint-config-thehelp#configurations-in-this-project):
 
 ```
-Plugins missing from left:
+Plugins missing from left: 2
   bdd
   chai-expect
 
 Plugins missing from right: None
 
-Extends missing from left:
+Extends missing from left: 1
   @scottnonnenberg/thehelp/test
 
-Extends missing from right:
+Extends missing from right: 1
   @scottnonnenberg/thehelp
 
-Rules missing from left:
+Rules missing from left: 5
   bdd/focus
   bdd/exclude
   chai-expect/missing-assertion
   chai-expect/no-inner-compare
   chai-expect/terminating-properties
 
-Rules missing from right: None
+Rules missing from right: 8
+  max-nested-callbacks
+  no-magic-numbers
+  no-sync
+  no-undefined
+  no-unused-expressions
+  import/no-extraneous-dependencies
+  security/detect-non-literal-fs-filename
+  immutable/no-let
 
-Rule configuration differences:
-  max-nested-callbacks:
-    left: [ 'error', { max: 3 } ]
-    right: [ 'off', { max: 3 } ]
-  no-magic-numbers:
-    left: [ 'error',
-      { ignore: [ -2, -1, 0, 1, 2 ],
-        ignoreArrayIndexes: true,
-        enforceConst: true,
-        detectObjects: false } ]
-    right: [ 'off',
-      { ignore: [ -2, -1, 0, 1, 2 ],
-        ignoreArrayIndexes: true,
-        enforceConst: true,
-        detectObjects: false } ]
-  no-sync:
-    left: 'error'
-    right: 'off'
-  no-undefined:
-    left: 'error'
-    right: 'off'
-  no-unused-expressions:
-    left: 'error'
-    right: 'off'
-  import/no-extraneous-dependencies:
-    left: [ 'error', { devDependencies: false } ]
-    right: [ 'off', { devDependencies: false } ]
-  security/detect-non-literal-fs-filename:
-    left: 'error'
-    right: 'off'
-  immutable/no-let:
-    left: 'error'
-    right: 'off'
+Rule configuration differences: None
 
-Differences in other configuration:
+Differences in other configuration: 1
   env.mocha:
     left: undefined
     right: true
 ```
 
-It make it very easy to see how ESLint merged the settings. In the right config, rules are off but they have the same base configuration as the left config.
+Because the `test` configuration only adds and disables rules, we don't see any configuration differences. We consider a rule to be 'missing' from a configuration is it is disabled.
 
 ## Permissions
 
