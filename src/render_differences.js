@@ -46,7 +46,7 @@ function bold(item) {
 
 function joinOrNone(array) {
   if (array.length) {
-    return '\n' + INDENT + array.join(JOIN);
+    return ' ' + array.length + '\n' + INDENT + array.join(JOIN);
   }
 
   return chalk.dim(' None');
