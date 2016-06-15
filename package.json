@@ -29,7 +29,6 @@
     "dashdash": "1.14.0",
     "deep-equal": "1.0.1",
     "deep-diff": "0.3.4",
-    "eslint": "2.11.1",
     "lodash": "4.x"
   },
   "devDependencies": {

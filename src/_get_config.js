@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-console */
+/* eslint-disable no-console, import/no-extraneous-dependencies */
 
 var path = require('path');
 var eslint = require('eslint');
