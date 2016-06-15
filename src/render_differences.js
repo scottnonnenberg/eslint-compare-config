@@ -53,7 +53,10 @@ function joinOrNone(array) {
 }
 
 function printPluginDifferences(result) {
-  return 'Plugins missing from left:'
+  return 'Plugins shared:'
+    + joinOrNone(_.map(result.sharedPlugins, bold))
+    + SEPARATOR
+    + 'Plugins missing from left:'
     + joinOrNone(_.map(result.pluginsMissingFromLeft, bold))
     + SEPARATOR
     + 'Plugins missing from right:'
@@ -61,7 +64,10 @@ function printPluginDifferences(result) {
 }
 
 function printExtendsDifferences(result) {
-  return 'Extends missing from left:'
+  return 'Extends shared:'
+    + joinOrNone(_.map(result.sharedExtends, bold))
+    + SEPARATOR
+    + 'Extends missing from left:'
     + joinOrNone(_.map(result.extendsMissingFromLeft, bold))
     + SEPARATOR
     + 'Extends missing from right:'
@@ -70,7 +76,10 @@ function printExtendsDifferences(result) {
 
 
 function printRuleDifferences(result) {
-  return 'Rules missing from left:'
+  return 'Rules shared:'
+    + joinOrNone(_.map(result.sharedRules, bold))
+    + SEPARATOR
+    + 'Rules missing from left:'
     + joinOrNone(_.map(result.rulesMissingFromLeft, bold))
     + SEPARATOR
     + 'Rules missing from right:'
