@@ -24,11 +24,15 @@ describe('unit/index', function() {
     expect(index).to.have.property('getScore').that.exist;
   });
 
+  it('has truthy normalizeConfig key', function() {
+    expect(index).to.have.property('normalizeConfig').that.exist;
+  });
+
   it('has truthy renderDifferences key', function() {
     expect(index).to.have.property('renderDifferences').that.exist;
   });
 
-  it('has two keys', function() {
-    expect(_.keys(index)).to.have.length(5);
+  it('has six keys', function() {
+    expect(_.keys(index)).to.have.length(6);
   });
 });

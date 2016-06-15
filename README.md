@@ -97,15 +97,14 @@ If installed as a dependency, you can `require('eslint-compare-config')` and get
 - `getDifferences(left, right)` - given two configs, produces an object describing all of their differences. The same thing you get when you use the `--json` option
 - `getLiteralConfig(leftPath, rightPath)` - loads the target files using `require()`, thus supporting only JavaScript and JSON file formats
 - `getScore(differences)` - given `getDifferences()` output, returns a similarity score 1-100.
+- `normalizeConfig(config)` - removes disabled rules, and turns numeric toggles into string (1 = 'warning', 2 = 'error')
 - `renderDifferences(differences)` - given `getDifferences()` output, returns string with human-readable comparison (including ANSI color codes)
 
 ## TODO
 
 - Literal mode: support eslint config in YAML and `package.json` files
 - In default output, include overall counts: total, shared, missing left, missing right
-- Support extended equivalence:
-  * 0 === 'off', 1 === 'warning', 2 === 'error'
-  * just 'error' is the same as ['error', {something: true}] if that config is the same as the default. How to get the default?
+- Use open defaults in equivalence: just 'error' is the same as ['error', {something: true}] if that config is the same as the default. How to get the default?
 - Determinism: sort rules/plugins/extends by name, rules without / in them first
 
 ## License

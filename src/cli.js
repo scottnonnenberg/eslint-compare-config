@@ -8,6 +8,7 @@ var getConfig = require('./get_config');
 var getLiteralConfig = require('./get_literal_config');
 var getDifferences = require('./get_differences');
 var renderDifferences = require('./render_differences');
+var normalizeConfig = require('./normalize_config');
 var getScore = require('./get_score');
 
 
@@ -59,11 +60,12 @@ function showHelp(parsed, parser) {
 }
 
 function loadConfig(literal, left, right) {
-  if (literal) {
-    return getLiteralConfig(left, right);
-  }
+  var config = literal ? getLiteralConfig(left, right) : getConfig(left, right);
 
-  return getConfig(left, right);
+  return {
+    left: normalizeConfig(config.left),
+    right: normalizeConfig(config.right),
+  };
 }
 
 function getParser() {
