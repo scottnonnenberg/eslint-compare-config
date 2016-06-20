@@ -12,17 +12,34 @@ eslint-compare-config projectDirOne/ projectDirTwo/
 Here's what you get if you compare [`@scottnonnenberg/thehelp`](https://github.com/scottnonnenberg/eslint-config-thehelp) config versus that config merged with [`@scottnonnenberg/thehelp/test`](https://github.com/scottnonnenberg/eslint-config-thehelp#configurations-in-this-project):
 
 ```
+Plugins shared: 8
+  filenames
+  import
+  security
+  @scottnonnenberg/thehelp
+  immutable
+  no-loops
+  jsx-a11y
+  react
+
 Plugins missing from left: 2
   bdd
   chai-expect
 
 Plugins missing from right: None
 
+Extends shared: 2
+  @scottnonnenberg/thehelp/react
+  @scottnonnenberg/thehelp/functional
+
 Extends missing from left: 1
   @scottnonnenberg/thehelp/test
 
 Extends missing from right: 1
   @scottnonnenberg/thehelp
+
+Rules matching: 271
+  [full list omitted for brevity]
 
 Rules missing from left: 5
   bdd/focus
