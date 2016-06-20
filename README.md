@@ -96,7 +96,7 @@ If installed as a dependency, you can `require('eslint-compare-config')` and get
 ## TODO
 
 - Literal mode: support eslint config in YAML and `package.json` files
-- Use open defaults in equivalence: just 'error' is the same as ['error', {something: true}] if that config is the same as the default. How to get the default?
+- Use each rule's defaults in equivalence: just 'error' is the same as ['error', {something: true}] if that config is the same as the default. How to get the default?
 - Determinism: sort rules/plugins/extends by name, rules without / in them first
 - Add option to include globals in the diff - there are a lot, so it's too noisy to show by default
 
