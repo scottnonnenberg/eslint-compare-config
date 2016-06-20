@@ -3,6 +3,7 @@
 'use strict';
 
 var dashdash = require('dashdash');
+var _ = require('lodash');
 
 var getConfig = require('./get_config');
 var getLiteralConfig = require('./get_literal_config');
@@ -60,11 +61,13 @@ function showHelp(parsed, parser) {
 }
 
 function loadConfig(literal, left, right) {
-  var config = literal ? getLiteralConfig(left, right) : getConfig(left, right);
+  var get = literal ? getLiteralConfig : getConfig;
+  var leftConfig = _.omit(get(left), ['globals']);
+  var rightConfig = _.omit(get(right), ['globals']);
 
   return {
-    left: normalizeConfig(config.left),
-    right: normalizeConfig(config.right),
+    left: normalizeConfig(leftConfig),
+    right: normalizeConfig(rightConfig),
   };
 }
 

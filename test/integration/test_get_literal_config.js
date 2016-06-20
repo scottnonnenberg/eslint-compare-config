@@ -12,7 +12,10 @@ describe('integration/getLiteralConfig', function() {
     var left = 'test/integration/left/.eslintrc.js';
     var right = 'test/integration/right/.eslintrc.js';
 
-    var actual = getConfig(left, right);
+    var actual = {
+      left: getConfig(left),
+      right: getConfig(right),
+    };
 
     expect(actual).to.have.all.keys('left', 'right');
 

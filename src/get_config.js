@@ -6,25 +6,12 @@ var path = require('path');
 var fs = require('fs');
 var childProcess = require('child_process');
 
-var _ = require('lodash');
-
 
 var script = fs.readFileSync(path.join(__dirname, '_get_config.js')).toString();
 
-function getConfig(leftPath, rightPath) {
-  var leftDir = path.resolve(leftPath);
-  var rightDir = path.resolve(rightPath);
+function getConfig(startPath) {
+  startPath = path.resolve(startPath);
 
-  var left = getConfigForDir(leftDir);
-  var right = getConfigForDir(rightDir);
-
-  return {
-    left: _.omit(left, ['globals']),
-    right: _.omit(right, ['globals']),
-  };
-}
-
-function getConfigForDir(startPath) {
   var stat = fs.statSync(startPath);
   var dir = stat.isDirectory() ? startPath : path.dirname(startPath);
   var filename = '__get_config.js';

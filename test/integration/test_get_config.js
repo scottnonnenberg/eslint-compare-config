@@ -12,7 +12,10 @@ describe('integration/getConfig', function() {
     var left = 'test/integration/left';
     var right = 'test/integration/right';
 
-    var actual = getConfig(left, right);
+    var actual = {
+      left: getConfig(left),
+      right: getConfig(right),
+    };
 
     expect(actual).to.have.all.keys('left', 'right');
 
