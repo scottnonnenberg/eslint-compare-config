@@ -16,7 +16,7 @@ describe('unit/getScore', function() {
   it('returns 100 for no differences', function() {
     var differences = {
       rulesMissingFromLeft: [],
-      sharedRules: [],
+      matchingRules: [],
       rulesMissingFromRight: [],
       ruleDifferences: [],
     };
@@ -28,11 +28,11 @@ describe('unit/getScore', function() {
 
   it('returns all differences', function() {
     var differences = {
-      rulesMissingFromLeft: ['one', 'two'],
-      sharedRules: ['three', 'four'],
-      rulesMissingFromRight: ['five', 'six'],
+      rulesMissingFromLeft: ['one', 'two', 'three'],
+      matchingRules: ['four', 'five'],
+      rulesMissingFromRight: ['six', 'seven'],
       ruleDifferences: [{
-        rule: 'five',
+        rule: 'eight',
         left: ['error', {
           setting: 1,
         }],
@@ -41,13 +41,13 @@ describe('unit/getScore', function() {
     };
     var actual = getScore(differences);
 
-    expect(actual).to.equal(17);
+    expect(actual).to.equal(25);
   });
 
   it('returns minimal differences', function() {
     var differences = {
       rulesMissingFromLeft: [],
-      sharedRules: ['one'],
+      matchingRules: ['one'],
       rulesMissingFromRight: [],
       ruleDifferences: [],
     };

@@ -5,21 +5,18 @@ var MAX = 100;
 module.exports = function(differences) {
   var totals = {
     rulesMissingFromLeft: getLength(differences.rulesMissingFromLeft),
-    sharedRules: getLength(differences.sharedRules),
+    matchingRules: getLength(differences.matchingRules),
     rulesMissingFromRight: getLength(differences.rulesMissingFromRight),
     ruleDifferences: getLength(differences.ruleDifferences),
   };
 
-  var totalRules = totals.rulesMissingFromLeft + totals.sharedRules
-    + totals.rulesMissingFromRight;
-  var unmatched = totals.ruleDifferences + totals.rulesMissingFromLeft
-    + totals.rulesMissingFromRight;
-
+  var totalRules = totals.rulesMissingFromLeft + totals.matchingRules
+    + totals.rulesMissingFromRight + totals.ruleDifferences;
   if (totalRules === 0) {
     return MAX;
   }
 
-  return Math.round((totalRules - unmatched) / totalRules * MAX);
+  return Math.round(totals.matchingRules / totalRules * MAX);
 };
 
 function getLength(array) {

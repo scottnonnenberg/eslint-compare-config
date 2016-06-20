@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable security/detect-object-injection */
+/* eslint-disable security/detect-object-injection, max-statements */
 
 var _ = require('lodash');
 var equal = require('deep-equal');
@@ -21,6 +21,22 @@ function compareRules(leftConfig, rightConfig) {
   var rightClean = _.omit(rightConfig, ['rules', 'plugins', 'extends']);
 
   var sharedRules = _.intersection(leftRules, rightRules);
+  var ruleDifferences = _.chain(sharedRules)
+    .map(function(rule) {
+      return {
+        rule: rule,
+        left: leftConfig.rules[rule],
+        right: rightConfig.rules[rule],
+      };
+    })
+    .reject(function(item) {
+      return equal(item.left, item.right);
+    })
+    .value();
+  var ruleDifferenceNames = _.map(ruleDifferences, function(item) {
+    return item.rule;
+  });
+  var matchingRules = _.difference(sharedRules, ruleDifferenceNames);
 
   return {
     pluginsMissingFromLeft: _.difference(rightPlugins, leftPlugins),
@@ -32,20 +48,9 @@ function compareRules(leftConfig, rightConfig) {
     extendsMissingFromRight: _.difference(leftExtends, rightExtends),
 
     rulesMissingFromLeft: _.difference(rightRules, leftRules),
-    sharedRules: sharedRules,
+    matchingRules: matchingRules,
     rulesMissingFromRight: _.difference(leftRules, rightRules),
-    ruleDifferences: _.chain(sharedRules)
-      .map(function(rule) {
-        return {
-          rule: rule,
-          left: leftConfig.rules[rule],
-          right: rightConfig.rules[rule],
-        };
-      })
-      .reject(function(item) {
-        return equal(item.left, item.right);
-      })
-      .value(),
+    ruleDifferences: ruleDifferences,
 
     differences: deepDiff(leftClean, rightClean) || [],
   };

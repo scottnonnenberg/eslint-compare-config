@@ -25,7 +25,7 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
 
     expect(actual).to.have.property('rulesMissingFromLeft').that.deep.equal([]);
-    expect(actual).to.have.property('sharedRules').that.deep.equal([]);
+    expect(actual).to.have.property('matchingRules').that.deep.equal([]);
     expect(actual).to.have.property('rulesMissingFromRight').that.deep.equal([]);
     expect(actual).to.have.property('ruleDifferences').that.deep.equal([]);
 
@@ -42,6 +42,7 @@ describe('unit/getDifferences', function() {
         three: ['error', {
           setting: 1,
         }],
+        four: 'error',
       },
     };
     var right = {
@@ -51,6 +52,7 @@ describe('unit/getDifferences', function() {
           setting: 2,
         }],
         four: 'error',
+        five: 'error',
       },
     };
 
@@ -65,9 +67,9 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
 
     expect(actual).to.have.property('rulesMissingFromLeft')
-      .that.deep.equal(['four']);
-    expect(actual).to.have.property('sharedRules')
-      .that.deep.equal(['two', 'three']);
+      .that.deep.equal(['five']);
+    expect(actual).to.have.property('matchingRules')
+      .that.deep.equal(['two', 'four']);
     expect(actual).to.have.property('rulesMissingFromRight')
       .that.deep.equal(['one']);
     expect(actual).to.have.property('ruleDifferences')
@@ -107,7 +109,7 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
 
     expect(actual).to.have.property('rulesMissingFromLeft').that.deep.equal([]);
-    expect(actual).to.have.property('sharedRules').that.deep.equal([]);
+    expect(actual).to.have.property('matchingRules').that.deep.equal([]);
     expect(actual).to.have.property('rulesMissingFromRight').that.deep.equal([]);
     expect(actual).to.have.property('ruleDifferences').that.deep.equal([]);
 
@@ -142,7 +144,7 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('extendsMissingFromRight').that.deep.equal([]);
 
     expect(actual).to.have.property('rulesMissingFromLeft').that.deep.equal([]);
-    expect(actual).to.have.property('sharedRules').that.deep.equal([]);
+    expect(actual).to.have.property('matchingRules').that.deep.equal([]);
     expect(actual).to.have.property('rulesMissingFromRight').that.deep.equal([]);
     expect(actual).to.have.property('ruleDifferences').that.deep.equal([]);
 

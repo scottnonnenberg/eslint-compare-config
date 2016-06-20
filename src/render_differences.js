@@ -76,8 +76,8 @@ function printExtendsDifferences(result) {
 
 
 function printRuleDifferences(result) {
-  return 'Rules shared:'
-    + joinOrNone(_.map(result.sharedRules, bold))
+  return 'Rules matching:'
+    + joinOrNone(_.map(result.matchingRules, bold))
     + SEPARATOR
     + 'Rules missing from left:'
     + joinOrNone(_.map(result.rulesMissingFromLeft, bold))
