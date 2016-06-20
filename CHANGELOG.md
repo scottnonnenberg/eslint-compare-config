@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/scottnonnenberg/eslint-compare-config/compare/v0.4.0...v1.0.0) (2016-06-20)
+
+
+### Features
+
+* **API:** Add sync postfix to all public functions ([59848b9](https://github.com/scottnonnenberg/eslint-compare-config/commit/59848b9))
+* **API:** Simplify getConfig and getLiteralConfig to take one path ([9c46df4](https://github.com/scottnonnenberg/eslint-compare-config/commit/9c46df4))
+* **diff:** Four rules sections are now mutually exclusive ([c2350af](https://github.com/scottnonnenberg/eslint-compare-config/commit/c2350af))
+
+
+### BREAKING CHANGES
+
+* API: All public methods go from xxx() to xxxSync() to make
+it clear that all methods are synchronous.
+* API: getConfig and getLiteralConfig previously always took
+two parameters, one for each config to be compared. Now takes just one
+path, loading one config at a time. 
+* diff: sharedRules key in diff object was changed to 
+matchingRules, and no longer includes the rules in the ruleDifferences
+array.
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/scottnonnenberg/eslint-compare-config/compare/v0.3.0...v0.4.0) (2016-06-15)
 
