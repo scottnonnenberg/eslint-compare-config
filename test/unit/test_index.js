@@ -8,28 +8,28 @@ var index = require('index');
 
 
 describe('unit/index', function() {
-  it('has truthy getConfig key', function() {
-    expect(index).to.have.property('getConfig').that.exist;
+  it('has truthy getConfigSync key', function() {
+    expect(index).to.have.property('getConfigSync').that.exist;
   });
 
-  it('has truthy getDifferences key', function() {
-    expect(index).to.have.property('getDifferences').that.exist;
+  it('has truthy getDifferencesSync key', function() {
+    expect(index).to.have.property('getDifferencesSync').that.exist;
   });
 
-  it('has truthy getLiteralConfig key', function() {
-    expect(index).to.have.property('getLiteralConfig').that.exist;
+  it('has truthy getLiteralConfigSync key', function() {
+    expect(index).to.have.property('getLiteralConfigSync').that.exist;
   });
 
-  it('has truthy getScore key', function() {
-    expect(index).to.have.property('getScore').that.exist;
+  it('has truthy getScoreSync key', function() {
+    expect(index).to.have.property('getScoreSync').that.exist;
   });
 
-  it('has truthy normalizeConfig key', function() {
-    expect(index).to.have.property('normalizeConfig').that.exist;
+  it('has truthy normalizeConfigSync key', function() {
+    expect(index).to.have.property('normalizeConfigSync').that.exist;
   });
 
-  it('has truthy renderDifferences key', function() {
-    expect(index).to.have.property('renderDifferences').that.exist;
+  it('has truthy renderDifferencesSync key', function() {
+    expect(index).to.have.property('renderDifferencesSync').that.exist;
   });
 
   it('has six keys', function() {

@@ -3,10 +3,10 @@
 /* eslint-disable global-require */
 
 module.exports = {
-  getConfig: require('./src/get_config'),
-  getDifferences: require('./src/get_differences'),
-  getLiteralConfig: require('./src/get_literal_config'),
-  getScore: require('./src/get_score'),
-  normalizeConfig: require('./src/normalize_config'),
-  renderDifferences: require('./src/render_differences'),
+  getConfigSync: require('./src/get_config'),
+  getDifferencesSync: require('./src/get_differences'),
+  getLiteralConfigSync: require('./src/get_literal_config'),
+  getScoreSync: require('./src/get_score'),
+  normalizeConfigSync: require('./src/normalize_config'),
+  renderDifferencesSync: require('./src/render_differences'),
 };
