@@ -2,6 +2,8 @@
 
 A little tool to help you compare [ESLint](http://eslint.org/) configurations, the way ESLint sees them.
 
+Blog post announcing this project: https://blog.scottnonnenberg.com/eslint-part-3-analysis/
+
 ## Quickstart
 
 ```bash
