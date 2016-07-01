@@ -95,6 +95,12 @@ If installed as a dependency, you can `require('eslint-compare-config')` and get
 - `normalizeConfigSync(config)` - removes disabled rules, and turns numeric toggles into string (1 = 'warning', 2 = 'error')
 - `renderDifferencesSync(differences)` - given `getDifferences()` output, returns string with human-readable comparison (including ANSI color codes)
 
+## Contributing
+
+This project uses [`standard-version`](https://github.com/conventional-changelog/standard-version) to release new versions, automatically updating the version number and [changelog](https://github.com/scottnonnenberg/eslint-compare-config/blob/master/CHANGELOG.md) based on commit messages in [standard format](https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md). [`ghooks`](https://github.com/gtramontina/ghooks) and [`validate-commit-msg`](https://github.com/kentcdodds/validate-commit-msg) are used to ensure all commit messages match the expected format (see [package.json](https://github.com/scottnonnenberg/eslint-compare-config/blob/master/package.json) for the configuration details).
+
+It takes some getting used to, but this configuration is absolutely worthwhile. A changelog is way easier to understand than the chaos of a raw commit stream, especially with `standard-version` providing direct links to bugs, commits and [commit ranges](https://github.com/scottnonnenberg/eslint-compare-config/compare/v0.4.0...v1.0.0).
+
 ## TODO
 
 - Literal mode: support eslint config in YAML and `package.json` files
