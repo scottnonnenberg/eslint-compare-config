@@ -7,6 +7,14 @@ var normalizeConfig = require('src/normalize_config');
 
 
 describe('unit/normalizeConfig', function() {
+  it('returns null for null config', function() {
+    var config = null;
+    var expected = null;
+
+    var actual = normalizeConfig(config);
+    expect(actual).to.deep.equal(expected);
+  });
+
   it('removes raw off', function() {
     var config = {
       rules: {
