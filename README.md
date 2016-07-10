@@ -4,6 +4,8 @@ A little tool to help you compare [ESLint](http://eslint.org/) configurations, t
 
 Blog post announcing this project: https://blog.scottnonnenberg.com/eslint-part-3-analysis/
 
+[![continous integration](https://img.shields.io/circleci/project/scottnonnenberg/eslint-compare-config/master.svg?maxAge=3600)](https://circleci.com/gh/scottnonnenberg/eslint-compare-config/tree/master) [![code coverage](https://img.shields.io/codecov/c/github/scottnonnenberg/eslint-compare-config/master.svg?maxAge=3600)](https://codecov.io/gh/scottnonnenberg/eslint-compare-config/branch/master) [![npm version](https://img.shields.io/npm/v/@scottnonnenberg/eslint-compare-config.svg?maxAge=3600)](https://www.npmjs.com/package/@scottnonnenberg/eslint-compare-config) [![license](https://img.shields.io/github/license/scottnonnenberg/eslint-compare-config.svg?maxAge=2592000)](https://github.com/scottnonnenberg/eslint-compare-config#license)
+
 ## Quickstart
 
 ```bash
