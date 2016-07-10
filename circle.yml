@@ -1,0 +1,10 @@
+dependencies:
+  override:
+    - nvm install 6
+    # we want to install dependencies with npm 3
+    - nvm use 6 && npm install
+test:
+  override:
+    - nvm use 4 && npm run test
+    - nvm use 6 && npm run ci
+

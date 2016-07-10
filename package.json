@@ -10,6 +10,8 @@
     "release": "standard-version",
     "lint": "eslint .",
     "test": "npm run all && npm run lint",
+    "test-coverage": "npm run all-coverage && npm run lint",
+    "ci": "npm run test-coverage && npm run send-to-codecov",
     "mocha": "NODE_ENV=test time mocha --recursive --require test/setup.js",
     "mocha-watch": "npm run mocha -- --watch",
     "mocha-coverage": "NODE_ENV=test time istanbul cover _mocha -- --recursive --require test/setup.js",
@@ -22,6 +24,7 @@
     "all": "npm run mocha -- -s 15 test/unit test/integration",
     "all-watch": "npm run mocha-watch -- -s 15 test/unit test/integration",
     "all-coverage": "npm run mocha-coverage -- test/unit test/integration",
+    "send-to-codecov": "codecov",
     "open-coverage": "open coverage/lcov-report/index.html"
   },
   "dependencies": {
@@ -35,6 +38,7 @@
     "@scottnonnenberg/eslint-config-thehelp": "0.6.1",
     "app-module-path": "1.1.0",
     "chai": "3.5.0",
+    "codecov": "1.0.1",
     "ghooks": "1.2.3",
     "istanbul": "0.4.3",
     "mocha": "2.5.3",
