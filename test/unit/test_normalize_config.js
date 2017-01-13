@@ -56,7 +56,7 @@ describe('unit/normalizeConfig', function() {
 
     var expected = {
       rules: {
-        rule: 'error',
+        rule: ['error'],
       },
     };
 
@@ -73,7 +73,7 @@ describe('unit/normalizeConfig', function() {
 
     var expected = {
       rules: {
-        rule: 'warning',
+        rule: ['warning'],
       },
     };
 

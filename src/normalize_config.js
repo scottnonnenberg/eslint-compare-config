@@ -24,7 +24,7 @@ function fixRule(ruleArray) {
     value[0] = fixRuleValue(value[0]);
   }
   else {
-    value = fixRuleValue(value);
+    value = [fixRuleValue(value)];
   }
 
   return [name, value];
