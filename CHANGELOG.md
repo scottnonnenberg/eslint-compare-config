@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/scottnonnenberg/eslint-compare-config/compare/v1.0.0...v1.0.1) (2017-01-13)
+
+
+### Bug Fixes
+
+* **normalization:** coerce plain string rule config to array ([#5](https://github.com/scottnonnenberg/eslint-compare-config/issues/5)) ([1c8115c](https://github.com/scottnonnenberg/eslint-compare-config/commit/1c8115c))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/scottnonnenberg/eslint-compare-config/compare/v0.4.0...v1.0.0) (2016-06-20)
 
