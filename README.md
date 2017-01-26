@@ -74,7 +74,7 @@ Because the `test` configuration only adds and disables rules, we don't see any 
 
 ## Permissions
 
-Note that, to get around ESLint plugin/module-loading semantics this tool puts a file in each target directory and runs it with Node.js. This means that you'll need write/delete permissions in the target directory.
+Note that, to get around ESLint plugin/module-loading semantics, this tool puts a file in each target directory and runs it with Node.js. This means that you'll need write/delete permissions in the target directory.
 
 If you don't have that permssion, your best bet is to go with _literal mode_.
 
