@@ -88,7 +88,7 @@ First, you will always need to provide two paths to the tool. The first is the _
 
 ## API
 
-If installed as a dependency, you can `require('eslint-compare-config')` and get access to a number of functions:
+If installed as a dependency, you can `require('@scottnonnenberg/eslint-compare-config')` and get access to a number of functions:
 
 - `getConfigSync(path)` - puts a file in each of the target directories whichs uses `eslint` APIs to load the configuration for a file in that directory, runs them, then deletes them.
 - `getLiteralConfigSync(path)` - loads the target files using `require()`, thus supporting only JavaScript and JSON file formats
