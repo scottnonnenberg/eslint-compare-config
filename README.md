@@ -82,7 +82,7 @@ If you don't have that permssion, your best bet is to go with _literal mode_.
 
 First, you will always need to provide two paths to the tool. The first is the _left_, and the second is the _right_. These terms will be used in the output.
 
-- `--literal` - by default, the tool uses full ESlint semantics to load configuration. Providing this option changes to a direct load of the target file, so you can no longer provide directories as input. Right now only JavaScript and JSON files are supported.
+- `--literal` - by default, the tool uses full ESlint semantics to load configuration. Providing this option changes to a `require()` of the target path, which means normal [Node.js require semantics](https://nodejs.org/api/modules.html#modules_all_together) (various transformations to find JavaScript or JSON to load) apply. Because `require()` is called directly, right now only JavaScript and JSON files are supported.
 - `--json` - by default, the difference between the two configurations is displayed in human-readable format (see above). If you'd like to use the data in another tool, this will print the raw JSON.stringified `differences` object to the console.
 - `--score` - if you'd like to see the similarity of two configurations at a glance, use this option. 0% is completely different, 100% is exactly the same.
 
