@@ -38,7 +38,7 @@
     "@scottnonnenberg/eslint-config-thehelp": "0.6.1",
     "app-module-path": "1.1.0",
     "chai": "3.5.0",
-    "codecov": "1.0.1",
+    "codecov": "3.6.5",
     "ghooks": "1.2.3",
     "istanbul": "0.4.3",
     "mocha": "2.5.3",
