@@ -1,9 +1,7 @@
 'use strict';
 
-var right = {
-  extends: [
-    '@scottnonnenberg/thehelp/test',
-  ],
+const right = {
+  extends: ['@scottnonnenberg/thehelp/test'],
 
   plugins: [
     'immutable',
@@ -12,9 +10,7 @@ var right = {
 
   rules: {
     two: 'off',
-    three: ['error', {
-      setting: 2,
-    }],
+    three: ['error', { setting: 2 }],
     four: 'error',
   },
 };

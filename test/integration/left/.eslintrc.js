@@ -1,16 +1,12 @@
 'use strict';
 
-var left = {
-  extends: [
-    '@scottnonnenberg/thehelp/scripts',
-  ],
+const left = {
+  extends: ['@scottnonnenberg/thehelp/scripts'],
 
   rules: {
     one: 'error',
     two: 'off',
-    three: ['error', {
-      setting: 1,
-    }],
+    three: ['error', { setting: 1 }],
   },
 };
 

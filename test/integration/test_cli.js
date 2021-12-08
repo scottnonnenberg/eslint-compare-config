@@ -1,50 +1,50 @@
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
 
-var cli = require('src/cli');
+const cli = require('src/cli');
 
 
-describe('integration/cli', function() {
-  var left = 'test/integration/left/.eslintrc.js';
-  var right = 'test/integration/right/.eslintrc.js';
+describe('integration/cli', () => {
+  const left = 'test/integration/left/.eslintrc.js';
+  const right = 'test/integration/right/.eslintrc.js';
 
-  it('throws if only one arg provided', function() {
-    expect(function() {
+  it('throws if only one arg provided', () => {
+    expect(() => {
       cli(['node', 'boot.js', left]);
     }).to.throw(Error)
       .that.match(/needs two configuration/);
   });
 
-  it('throws if three args provided', function() {
-    expect(function() {
+  it('throws if three args provided', () => {
+    expect(() => {
       cli(['node', 'boot.js', left, right, right]);
     }).to.throw(Error)
       .that.match(/needs two configuration/);
   });
 
-  it('shows help', function() {
+  it('shows help', () => {
     cli(['node', 'boot.js', left, right, '--help']);
   });
 
-  it('shows differences between two files', function() {
+  it('shows differences between two files', () => {
     cli(['node', 'boot.js', left, right]);
   });
 
-  it('shows literal differences between two files', function() {
+  it('shows literal differences between two files', () => {
     cli(['node', 'boot.js', left, right, '--literal']);
   });
 
-  it('shows json differences', function() {
+  it('shows json differences', () => {
     cli(['node', 'boot.js', left, right, '--json']);
   });
 
-  it('shows score', function() {
+  it('shows score', () => {
     cli(['node', 'boot.js', left, right, '--score']);
   });
 
-  it('shows literal score', function() {
+  it('shows literal score', () => {
     cli(['node', 'boot.js', left, right, '--score', '--literal']);
   });
 });

@@ -1,8 +1,8 @@
-/* eslint-disable global-require, security/detect-non-literal-require */
+/* eslint-disable import/no-dynamic-require, security/detect-non-literal-require */
 
 'use strict';
 
-var path = require('path');
+const path = require('path');
 
 
 function getLiteralConfig(target) {

@@ -1,18 +1,18 @@
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
-var _ = require('lodash');
+const chai = require('chai');
+const expect = chai.expect;
+const _ = require('lodash');
 
-var getConfig = require('src/get_config');
+const getConfig = require('src/get_config');
 
 
-describe('integration/getConfig', function() {
-  it('loads two config files', function() {
-    var left = 'test/integration/left';
-    var right = 'test/integration/right';
+describe('integration/getConfig', () => {
+  it('loads two config files', () => {
+    const left = 'test/integration/left';
+    const right = 'test/integration/right';
 
-    var actual = {
+    const actual = {
       left: getConfig(left),
       right: getConfig(right),
     };
@@ -22,10 +22,9 @@ describe('integration/getConfig', function() {
     expect(_.keys(actual.left.rules)).to.have.length.above(3);
     expect(_.keys(actual.right.rules)).to.have.length.above(3);
 
-    expect(actual).to.have.deep.property('left.extends').that.has.length(1);
-    expect(actual).to.have.deep.property('right.extends').that.has.length(1);
-
-    expect(actual).to.have.deep.property('left.plugins').that.has.length.above(0);
-    expect(actual).to.have.deep.property('right.plugins').that.has.length.above(2);
+    expect(actual.left)
+      .to.have.deep.property('plugins').that.has.length.above(0, 'left');
+    expect(actual.right)
+      .to.have.deep.property('plugins').that.has.length.above(2, 'right');
   });
 });

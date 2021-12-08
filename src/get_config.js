@@ -1,35 +1,34 @@
 'use strict';
 
-/* eslint-disable no-sync, security/detect-child-process, security/detect-non-literal-fs-filename */
+/* eslint-disable security/detect-child-process */
 
-var path = require('path');
-var fs = require('fs');
-var childProcess = require('child_process');
+const path = require('path');
+const { readFileSync, statSync, unlinkSync, writeFileSync } = require('fs');
+const childProcess = require('child_process');
 
 
-var script = fs.readFileSync(path.join(__dirname, '_get_config.js')).toString();
+const script = readFileSync(path.join(__dirname, '_get_config.js')).toString();
 
-function getConfig(startPath) {
-  startPath = path.resolve(startPath);
+function getConfig(providedPath) {
+  const startPath = path.resolve(providedPath);
 
-  var stat = fs.statSync(startPath);
-  var dir = stat.isDirectory() ? startPath : path.dirname(startPath);
-  var filename = '__get_config.js';
-  var target = path.join(dir, filename);
+  const stat = statSync(startPath);
+  const dir = stat.isDirectory() ? startPath : path.dirname(startPath);
+  const filename = '__get_config.js';
+  const target = path.join(dir, filename);
 
-  fs.writeFileSync(target, script);
-  var components = path.parse(dir);
+  writeFileSync(target, script);
+  const components = path.parse(dir);
 
-  var options = {
-    cwd: components.root, // enables proper eslint searches for parent configs
-  };
+  // enables proper eslint searches for parent configs
+  const options = { cwd: components.root };
 
   try {
-    var result = childProcess.execFileSync('node', [target], options).toString();
+    const result = childProcess.execFileSync('node', [target], options).toString();
     return JSON.parse(result);
   }
   finally {
-    fs.unlinkSync(target);
+    unlinkSync(target);
   }
 }
 

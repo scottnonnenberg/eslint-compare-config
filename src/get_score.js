@@ -1,16 +1,16 @@
 'use strict';
 
-var MAX = 100;
+const MAX = 100;
 
-module.exports = function(differences) {
-  var totals = {
+module.exports = function getScore(differences) {
+  const totals = {
     rulesMissingFromLeft: getLength(differences.rulesMissingFromLeft),
     matchingRules: getLength(differences.matchingRules),
     rulesMissingFromRight: getLength(differences.rulesMissingFromRight),
     ruleDifferences: getLength(differences.ruleDifferences),
   };
 
-  var totalRules = totals.rulesMissingFromLeft + totals.matchingRules
+  const totalRules = totals.rulesMissingFromLeft + totals.matchingRules
     + totals.rulesMissingFromRight + totals.ruleDifferences;
   if (totalRules === 0) {
     return MAX;

@@ -1,3 +1,5 @@
 node_modules
 coverage
 !.eslintrc.js
+_get_config.js
+test/integration

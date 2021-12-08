@@ -1,42 +1,36 @@
 'use strict';
 
-/* eslint-disable security/detect-object-injection, max-statements */
+/* eslint-disable security/detect-object-injection */
 
-var _ = require('lodash');
-var equal = require('deep-equal');
-var deepDiff = require('deep-diff');
+const _ = require('lodash');
+const equal = require('deep-equal');
+const deepDiff = require('deep-diff');
 
 
 function compareRules(leftConfig, rightConfig) {
-  var leftRules = _.keys(leftConfig.rules);
-  var rightRules = _.keys(rightConfig.rules);
+  const leftRules = _.keys(leftConfig.rules);
+  const rightRules = _.keys(rightConfig.rules);
 
-  var leftPlugins = leftConfig.plugins;
-  var rightPlugins = rightConfig.plugins;
+  const leftPlugins = leftConfig.plugins;
+  const rightPlugins = rightConfig.plugins;
 
-  var leftExtends = leftConfig.extends;
-  var rightExtends = rightConfig.extends;
+  const leftExtends = leftConfig.extends;
+  const rightExtends = rightConfig.extends;
 
-  var leftClean = _.omit(leftConfig, ['rules', 'plugins', 'extends']);
-  var rightClean = _.omit(rightConfig, ['rules', 'plugins', 'extends']);
+  const leftClean = _.omit(leftConfig, ['rules', 'plugins', 'extends']);
+  const rightClean = _.omit(rightConfig, ['rules', 'plugins', 'extends']);
 
-  var sharedRules = _.intersection(leftRules, rightRules);
-  var ruleDifferences = _.chain(sharedRules)
-    .map(function(rule) {
-      return {
-        rule: rule,
-        left: leftConfig.rules[rule],
-        right: rightConfig.rules[rule],
-      };
-    })
-    .reject(function(item) {
-      return equal(item.left, item.right);
-    })
+  const sharedRules = _.intersection(leftRules, rightRules);
+  const ruleDifferences = _.chain(sharedRules)
+    .map(rule => ({
+      rule,
+      left: leftConfig.rules[rule],
+      right: rightConfig.rules[rule],
+    }))
+    .reject(item => equal(item.left, item.right))
     .value();
-  var ruleDifferenceNames = _.map(ruleDifferences, function(item) {
-    return item.rule;
-  });
-  var matchingRules = _.difference(sharedRules, ruleDifferenceNames);
+  const ruleDifferenceNames = _.map(ruleDifferences, item => item.rule);
+  const matchingRules = _.difference(sharedRules, ruleDifferenceNames);
 
   return {
     pluginsMissingFromLeft: _.difference(rightPlugins, leftPlugins),
@@ -48,9 +42,9 @@ function compareRules(leftConfig, rightConfig) {
     extendsMissingFromRight: _.difference(leftExtends, rightExtends),
 
     rulesMissingFromLeft: _.difference(rightRules, leftRules),
-    matchingRules: matchingRules,
+    matchingRules,
     rulesMissingFromRight: _.difference(leftRules, rightRules),
-    ruleDifferences: ruleDifferences,
+    ruleDifferences,
 
     differences: deepDiff(leftClean, rightClean) || [],
   };

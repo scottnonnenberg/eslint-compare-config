@@ -1,29 +1,29 @@
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
-var strip = require('strip-ansi');
+const chai = require('chai');
+const expect = chai.expect;
+const strip = require('strip-ansi');
 
-var renderDifferences = require('src/render_differences');
+const renderDifferences = require('src/render_differences');
 
 
-describe('unit/renderDifferences', function() {
-  it('throws if provided null object', function() {
-    var differences = null;
-    expect(function() {
+describe('unit/renderDifferences', () => {
+  it('throws if provided null object', () => {
+    const differences = null;
+    expect(() => {
       renderDifferences(differences);
     }).to.throw(Error)
       .that.match(/need to provide/);
   });
 
-  it('handles empty object', function() {
-    var differences = {};
-    var actual = renderDifferences(differences);
+  it('handles empty object', () => {
+    const differences = {};
+    const actual = renderDifferences(differences);
     expect(actual).to.equal('No differences.');
   });
 
-  it('returns "No differences" for empty object', function() {
-    var differences = {
+  it('returns "No differences" for empty object', () => {
+    const differences = {
       pluginsMissingFromLeft: [],
       pluginsMissingFromRight: [],
       extendsMissingFromLeft: [],
@@ -34,44 +34,44 @@ describe('unit/renderDifferences', function() {
       differences: [],
     };
 
-    var actual = renderDifferences(differences);
+    const actual = renderDifferences(differences);
 
     expect(actual).to.equal('No differences.');
   });
 
-  it('returns all differences', function() {
-    var differences = {
+  it('returns all differences', () => {
+    const differences = {
       pluginsMissingFromLeft: ['one', 'two'],
       pluginsMissingFromRight: ['three', 'four'],
       extendsMissingFromLeft: ['_one', '_two'],
       extendsMissingFromRight: ['_three', '_four'],
       rulesMissingFromLeft: ['+one', '+two'],
       rulesMissingFromRight: ['+three', '+four'],
-      ruleDifferences: [{
-        rule: 'five',
-        left: ['error', {
-          setting: 1,
-        }],
-        right: 'off',
-      }],
-      differences: [{
-        kind: 'E',
-        lhs: '15',
-        path: [
-          'settings',
-          'react',
-          'version',
-        ],
-        rhs: '14',
-      }, {
-        kind: 'D',
-        lhs: 'babel-eslint',
-        path: [
-          'parser',
-        ],
-      }],
+      ruleDifferences: [
+        {
+          rule: 'five',
+          left: ['error', { setting: 1 }],
+          right: 'off',
+        },
+      ],
+      differences: [
+        {
+          kind: 'E',
+          lhs: '15',
+          path: [
+            'settings',
+            'react',
+            'version',
+          ],
+          rhs: '14',
+        }, {
+          kind: 'D',
+          lhs: 'babel-eslint',
+          path: ['parser'],
+        },
+      ],
     };
-    var expected =
+    const expected =
       'Plugins shared: None\n'
       + '\n'
       + 'Plugins missing from left: 2\n'
@@ -115,14 +115,14 @@ describe('unit/renderDifferences', function() {
       + '    left: \'babel-eslint\'\n'
       + '    right: undefined';
 
-    var actual = renderDifferences(differences);
+    const actual = renderDifferences(differences);
 
-    var stripped = strip(actual);
+    const stripped = strip(actual);
     expect(stripped).to.equal(expected);
   });
 
-  it('returns minimal differences', function() {
-    var differences = {
+  it('returns minimal differences', () => {
+    const differences = {
       pluginsMissingFromLeft: ['one'],
       pluginsMissingFromRight: [],
       rulesMissingFromLeft: [],
@@ -130,7 +130,7 @@ describe('unit/renderDifferences', function() {
       ruleDifferences: [],
       differences: [],
     };
-    var expected =
+    const expected =
       'Plugins shared: None\n'
       + '\n'
       + 'Plugins missing from left: 1\n'
@@ -154,9 +154,9 @@ describe('unit/renderDifferences', function() {
       + '\n'
       + 'Differences in other configuration: None';
 
-    var actual = renderDifferences(differences);
+    const actual = renderDifferences(differences);
 
-    var stripped = strip(actual);
+    const stripped = strip(actual);
     expect(stripped).to.equal(expected);
   });
 });

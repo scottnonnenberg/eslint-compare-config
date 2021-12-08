@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+const _ = require('lodash');
 
 function fixRuleValue(value) {
   if (value === 0) {
@@ -16,8 +16,8 @@ function fixRuleValue(value) {
 }
 
 function fixRule(ruleArray) {
-  var name = ruleArray[0];
-  var value = ruleArray[1];
+  const name = ruleArray[0];
+  let value = ruleArray[1];
 
   if (_.isArray(value)) {
     value = value.slice(0);
@@ -35,16 +35,14 @@ function normalizeConfig(config) {
     return config;
   }
 
-  var rules = _.chain(config.rules)
+  const rules = _.chain(config.rules)
     .toPairs()
     .map(fixRule)
-    .reject(function(ruleArray) {
-      return ruleArray[1] === 'off' || ruleArray[1][0] === 'off';
-    })
+    .reject(ruleArray => ruleArray[1] === 'off' || ruleArray[1][0] === 'off')
     .fromPairs()
     .value();
 
-  return _.assign({}, config, { rules: rules });
+  return _.assign({}, config, { rules });
 }
 
 module.exports = normalizeConfig;

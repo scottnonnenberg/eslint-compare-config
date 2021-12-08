@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable global-require */
-
 module.exports = {
   getConfigSync: require('./src/get_config'),
   getDifferencesSync: require('./src/get_differences'),

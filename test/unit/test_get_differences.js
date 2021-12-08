@@ -1,20 +1,20 @@
-/* eslint-disable max-statements */
+
 
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
-var _ = require('lodash');
+const chai = require('chai');
+const expect = chai.expect;
+const _ = require('lodash');
 
-var getDifferences = require('src/get_differences');
+const getDifferences = require('src/get_differences');
 
 
-describe('unit/getDifferences', function() {
-  it('returns empty object for empty rules', function() {
-    var left = {};
-    var right = {};
+describe('unit/getDifferences', () => {
+  it('returns empty object for empty rules', () => {
+    const left = {};
+    const right = {};
 
-    var actual = getDifferences(left, right);
+    const actual = getDifferences(left, right);
 
     expect(actual).to.have.property('pluginsMissingFromLeft').that.deep.equal([]);
     expect(actual).to.have.property('sharedPlugins').that.deep.equal([]);
@@ -34,29 +34,25 @@ describe('unit/getDifferences', function() {
     expect(_.keys(actual)).to.have.length(11);
   });
 
-  it('property computes rule diffs', function() {
-    var left = {
+  it('property computes rule diffs', () => {
+    const left = {
       rules: {
         one: 'error',
         two: 'off',
-        three: ['error', {
-          setting: 1,
-        }],
+        three: ['error', { setting: 1 }],
         four: 'error',
       },
     };
-    var right = {
+    const right = {
       rules: {
         two: 'off',
-        three: ['error', {
-          setting: 2,
-        }],
+        three: ['error', { setting: 2 }],
         four: 'error',
         five: 'error',
       },
     };
 
-    var actual = getDifferences(left, right);
+    const actual = getDifferences(left, right);
 
     expect(actual).to.have.property('pluginsMissingFromLeft').that.deep.equal([]);
     expect(actual).to.have.property('sharedPlugins').that.deep.equal([]);
@@ -74,28 +70,22 @@ describe('unit/getDifferences', function() {
       .that.deep.equal(['one']);
     expect(actual).to.have.property('ruleDifferences')
       .that.has.length(1)
-      .and.deep.equal([{
-        rule: 'three',
-        left: ['error', {
-          setting: 1,
-        }],
-        right: ['error', {
-          setting: 2,
-        }],
-      }]);
+      .and.deep.equal([
+        {
+          rule: 'three',
+          left: ['error', { setting: 1 }],
+          right: ['error', { setting: 2 }],
+        },
+      ]);
 
     expect(actual).to.have.property('differences').that.deep.equal([]);
   });
 
-  it('property computes plugin diffs', function() {
-    var left = {
-      plugins: ['one', 'two'],
-    };
-    var right = {
-      plugins: ['two', 'three'],
-    };
+  it('property computes plugin diffs', () => {
+    const left = { plugins: ['one', 'two'] };
+    const right = { plugins: ['two', 'three'] };
 
-    var actual = getDifferences(left, right);
+    const actual = getDifferences(left, right);
 
     expect(actual).to.have.property('pluginsMissingFromLeft')
       .that.deep.equal(['three']);
@@ -116,24 +106,14 @@ describe('unit/getDifferences', function() {
     expect(actual).to.have.property('differences').that.deep.equal([]);
   });
 
-  it('property computes diffs for the rest of the config', function() {
-    var left = {
-      settings: {
-        react: {
-          version: '15',
-        },
-      },
+  it('property computes diffs for the rest of the config', () => {
+    const left = {
+      settings: { react: { version: '15' } },
       parser: 'babel-eslint',
     };
-    var right = {
-      settings: {
-        react: {
-          version: '14',
-        },
-      },
-    };
+    const right = { settings: { react: { version: '14' } } };
 
-    var actual = getDifferences(left, right);
+    const actual = getDifferences(left, right);
 
     expect(actual).to.have.property('pluginsMissingFromLeft').that.deep.equal([]);
     expect(actual).to.have.property('sharedPlugins').that.deep.equal([]);
@@ -150,21 +130,21 @@ describe('unit/getDifferences', function() {
 
     expect(actual).to.have.property('differences')
       .that.has.length(2)
-      .and.deep.equal([{
-        kind: 'E',
-        lhs: '15',
-        path: [
-          'settings',
-          'react',
-          'version',
-        ],
-        rhs: '14',
-      }, {
-        kind: 'D',
-        lhs: 'babel-eslint',
-        path: [
-          'parser',
-        ],
-      }]);
+      .and.deep.equal([
+        {
+          kind: 'E',
+          lhs: '15',
+          path: [
+            'settings',
+            'react',
+            'version',
+          ],
+          rhs: '14',
+        }, {
+          kind: 'D',
+          lhs: 'babel-eslint',
+          path: ['parser'],
+        },
+      ]);
   });
 });

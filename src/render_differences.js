@@ -1,13 +1,13 @@
 'use strict';
 
-var util = require('util');
-var chalk = require('chalk');
-var _ = require('lodash');
+const util = require('util');
+const chalk = require('chalk');
+const _ = require('lodash');
 
 
-var INDENT = '  ';
-var JOIN = '\n' + INDENT;
-var SEPARATOR = '\n\n';
+const INDENT = '  ';
+const JOIN = `\n${INDENT}`;
+const SEPARATOR = '\n\n';
 
 function renderDifferences(result) {
   if (!result) {
@@ -46,11 +46,13 @@ function bold(item) {
 
 function joinOrNone(array) {
   if (array.length) {
-    return ' ' + array.length + '\n' + INDENT + array.join(JOIN);
+    return ` ${array.length}\n${INDENT}${array.join(JOIN)}`;
   }
 
   return chalk.dim(' None');
 }
+
+/* eslint-disable prefer-template */
 
 function printPluginDifferences(result) {
   return 'Plugins shared:'
@@ -90,11 +92,11 @@ function printRuleDifferences(result) {
 }
 
 function printRuleDifference(rule) {
-  var left = util.inspect(rule.left);
-  var right = util.inspect(rule.right);
+  const left = util.inspect(rule.left);
+  const right = util.inspect(rule.right);
 
-  var leftIndent = left.split('\n').join(JOIN + INDENT);
-  var rightIndent = right.split('\n').join(JOIN + INDENT);
+  const leftIndent = left.split('\n').join(JOIN + INDENT);
+  const rightIndent = right.split('\n').join(JOIN + INDENT);
 
   return bold(rule.rule) + ':\n'
      + INDENT + INDENT + 'left: ' + leftIndent + '\n'
@@ -107,13 +109,13 @@ function printOtherDifferences(result) {
 }
 
 function renderDiff(diff) {
-  var left = util.inspect(diff.lhs);
-  var right = util.inspect(diff.rhs);
+  const left = util.inspect(diff.lhs);
+  const right = util.inspect(diff.rhs);
 
-  var leftIndent = left.split('\n').join(JOIN + INDENT);
-  var rightIndent = right.split('\n').join(JOIN + INDENT);
+  const leftIndent = left.split('\n').join(JOIN + INDENT);
+  const rightIndent = right.split('\n').join(JOIN + INDENT);
 
-  var path = diff.path.join('.');
+  const path = diff.path.join('.');
 
   return bold(path) + ':\n'
      + INDENT + INDENT + 'left: ' + leftIndent + '\n'
