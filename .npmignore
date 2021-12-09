@@ -1,0 +1,10 @@
+test
+coverage
+
+.gitignore
+.npmignore
+.eslintignore
+.eslintrc.js
+.github
+
+*.sublime-*
