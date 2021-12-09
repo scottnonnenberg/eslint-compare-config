@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.1.0](https://github.com/scottnonnenberg/eslint-compare-config/compare/v1.0.1...v1.1.0) (2021-12-09)
+
+
+### Features
+
+* **eslint:** Support for modern eslint versions ([f23fdc4](https://github.com/scottnonnenberg/eslint-compare-config/commit/f23fdc4107c10ea6a8a7dcc8b19dcbd2153b9e04))
 
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/scottnonnenberg/eslint-compare-config/compare/v1.0.0...v1.0.1) (2017-01-13)
